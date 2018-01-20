@@ -643,8 +643,9 @@ int getCost(int cardNumber)
   return -1;
 }
 
+// Function for the Adventurer card
 int adventurer_func(int drawntreasure, struct gameState *state, int currentPlayer, int cardDrawn, int *temphand, int z) {
-	while (drawntreasure < 2) {
+	while (drawntreasure < 1) {
 		//if the deck is empty we need to shuffle discard and add to deck
 		if (state->deckCount[currentPlayer] < 1) {
 			shuffle(currentPlayer, state);
@@ -664,7 +665,7 @@ int adventurer_func(int drawntreasure, struct gameState *state, int currentPlaye
 		}
 	}
 
-	while (z - 1 >= 0) {
+	while (z - 1 > 0) {
 		// discard all cards in play that have been drawn
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z-1];
 		z=z-1;
@@ -681,7 +682,7 @@ int smithy_func(int currentPlayer, struct gameState *state, int handPos) {
 	}
 	
 	// discard card from hand
-	discardCard(handPos, currentPlayer, state, 0);
+	discardCard(handPos, currentPlayer, state, 2);
 	
 	return 0;
 }
@@ -690,12 +691,12 @@ int sea_hag_func(struct gameState *state, int currentPlayer) {
 	int i;
 	for (i = 0; i < state->numPlayers; i++) {
 		if (i != currentPlayer){
-			state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];
-			state->deckCount[i]--;
-			state->discardCount[i]++;
+			state->discard[i][state->discardCount[i]] = state->deck[i][--state->deckCount[i]];
+			--state->deckCount[i];
+			++state->discardCount[i];
 			
 			// Top card now a curse
-			state->deck[i][state->deckCount[i]--] = curse;
+			state->deck[i][--state->deckCount[i]] = curse;
 		}
 	}
 	
@@ -763,8 +764,8 @@ int treasure_map_func(struct gameState *state, int currentPlayer, int handPos) {
 
 	if (index > -1) {
 		// trash both treasure cards
-		discardCard(handPos, currentPlayer, state, 1);
-		discardCard(index, currentPlayer, state, 1);
+		discardCard(handPos, currentPlayer, state, 0);
+		discardCard(index, currentPlayer, state, 0);
 
 		// gain 4 Gold cards
 		for (i = 0; i < 4; i++) {
