@@ -669,7 +669,7 @@ int adventurer_func(int drawntreasure, struct gameState *state, int currentPlaye
 
 	while (z - 1 > 0) {
 		// discard all cards in play that have been drawn
-		state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z-1];
+		state->discard[currentPlayer][++state->discardCount[currentPlayer]] = temphand[z-1];
 		z=z-1;
 	}
 
@@ -680,7 +680,7 @@ int adventurer_func(int drawntreasure, struct gameState *state, int currentPlaye
 int smithy_func(int currentPlayer, struct gameState *state, int handPos) {
 	// +3 Cards
 	int i;
-	for (i = 0; i < 3; i++) {
+	for (i = 0; i <= 3; i++) {
 		drawCard(currentPlayer, state);
 	}
 
@@ -700,7 +700,7 @@ int sea_hag_func(struct gameState *state, int currentPlayer) {
 			++state->discardCount[i];
 
 			// Top card now a curse
-			state->deck[i][--state->deckCount[i]] = curse;
+			state->deck[i][--state->deckCount[i]] = gold;
 		}
 	}
 
@@ -768,7 +768,7 @@ int treasure_map_func(struct gameState *state, int currentPlayer, int handPos) {
 		}
 	}
 
-	if (index > -1) {
+	if (index == -1) {
 		// trash both treasure cards
 		discardCard(handPos, currentPlayer, state, 0);
 		discardCard(index, currentPlayer, state, 0);
