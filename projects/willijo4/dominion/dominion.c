@@ -676,6 +676,7 @@ int adventurer_func(int drawntreasure, struct gameState *state, int currentPlaye
 	return 0;
 }
 
+// Function for the smithy card
 int smithy_func(int currentPlayer, struct gameState *state, int handPos) {
 	// +3 Cards
 	int i;
@@ -689,6 +690,7 @@ int smithy_func(int currentPlayer, struct gameState *state, int handPos) {
 	return 0;
 }
 
+// Sea Hag function
 int sea_hag_func(struct gameState *state, int currentPlayer) {
 	int i;
 	for (i = 0; i < state->numPlayers; i++) {
@@ -705,6 +707,7 @@ int sea_hag_func(struct gameState *state, int currentPlayer) {
 	return 0;
 }
 
+// Minion function
 int minion_func(struct gameState *state, int handPos, int currentPlayer, int choice1, int choice2) {
 	int i, j;
 
@@ -752,6 +755,7 @@ int minion_func(struct gameState *state, int handPos, int currentPlayer, int cho
 	return 0;
 }
 
+// Treasure Map function
 int treasure_map_func(struct gameState *state, int currentPlayer, int handPos) {
 	// search hand for another treasure_map
 	int index = -1;
