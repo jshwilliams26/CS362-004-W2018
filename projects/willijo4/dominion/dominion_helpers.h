@@ -12,7 +12,7 @@ int getCost(int cardNumber);
 int cardEffect(int card, int choice1, int choice2, int choice3, 
 	       struct gameState *state, int handPos, int *bonus);
 
-int adventurer_func(int drawntreasure, struct gameState *state, int currentPlayer, int cardDrawn, int *temphand, int z);
+int adventurer_func(int drawntreasure, struct gameState *state, int currentPlayer, int cardDrawn, int *temphand);
 int smithy_func(int currentPlayer, struct gameState *state, int handPos);
 int sea_hag_func(struct gameState *state, int currentPlayer);
 int minion_func(struct gameState *state, int handPos, int currentPlayer, int choice1, int choice2);
