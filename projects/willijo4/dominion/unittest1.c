@@ -4,13 +4,12 @@
 // Description: Unit test for fullDeckCount function
 //****************************************************************
 #include "dominion.h"
-#include "dominion_helpers.h"
 #include "rngs.h"
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
 
-int fullDeckCount(int player, int card, struct gameState *state) {
+/*int fullDeckCount(int player, int card, struct gameState *state) {
 	int i;
 	int count = 0;
 
@@ -30,5 +29,27 @@ int fullDeckCount(int player, int card, struct gameState *state) {
 	}
 
 	return count;
+}*/
+
+int main() {
+	// Initialize gameState Struct
+	struct gameState teststate;
+	
+	int numplayers = 2;
+	int players[4] = {adventurer, smithy, sea_hag, minion};
+	
+	initializeGame(numplayers, players, 2000, &teststate);
+	
+	// Test with game state where none of the card are in the deck
+	
+	
+	// Tests with game state where each player has the card
+	
+	
+	// See if I can test each of the 3 for statements individually
+	
+	
+	return 0;
 }
+
 

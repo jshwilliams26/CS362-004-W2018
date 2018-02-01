@@ -10,7 +10,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-int isGameOver(struct gameState *state) {
+/*int isGameOver(struct gameState *state) {
 	int i;
 	int j;
 
@@ -34,5 +34,29 @@ int isGameOver(struct gameState *state) {
 		return 1;
 	}
 
+	return 0;
+}*/
+
+int main() {
+	
+	// Initialize gameState Struct
+	struct gameState teststate;
+	
+	int numplayers = 2;
+	int players[4] = {adventurer, smithy, sea_hag, minion};
+	
+	initializeGame(numplayers, players, 2000, &teststate);
+	
+	// Test with gamestate->supplyCount[province] == 0
+	printf("%d\n", teststate.supplyCount[province] == 0);
+	printf("%d\n", isGameOver(&teststate));
+	
+	
+	
+	// Test with gamestate->supplyCount[province] != 0
+	// Get j in the function to be greater than or equal to 3
+	
+	// Get j to be less than 3
+	
 	return 0;
 }
