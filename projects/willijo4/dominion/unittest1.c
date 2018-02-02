@@ -34,13 +34,16 @@
 int main() {
 	// Initialize gameState Struct
 	struct gameState teststate;
-	
-	int numplayers = 2;
-	int players[4] = {adventurer, smithy, sea_hag, minion};
-	
-	initializeGame(numplayers, players, 2000, &teststate);
-	
+
+	int numplayers = 10;
+	int players[10] = {adventurer, council_room, feast, gardens, minion, remodel, smithy, village, sea_hag, great_hall};
+			
 	// Test with game state where none of the card are in the deck
+	initializeGame(numplayers, players, 2000, &teststate);
+	int i;
+	for (i = 0; i < numplayers; i++) {
+		printf("%d\n", fullDeckCount(players[i], curse, &teststate));
+	}
 	
 	
 	// Tests with game state where each player has the card
