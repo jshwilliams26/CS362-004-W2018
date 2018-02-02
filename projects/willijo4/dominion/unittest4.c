@@ -1,7 +1,7 @@
 //****************************************************************
 // Name: Josh Williams (willijo4)
 // Assignment: 3
-// Description: Unit test for whoteTurn function
+// Description: Unit test for whoseTurn function
 //****************************************************************
 #include "dominion.h"
 #include "dominion_helpers.h"
