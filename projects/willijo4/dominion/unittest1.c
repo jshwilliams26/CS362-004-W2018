@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <assert.h>
 
 /*int fullDeckCount(int player, int card, struct gameState *state) {
 	int i;
