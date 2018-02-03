@@ -44,14 +44,30 @@ int main() {
 	
 	int numplayers = 2;
 	int players[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};	
-	initializeGame(numplayers, players, 2, &teststate);
+	initializeGame(numplayers, players, 4, &teststate);
+	
+	// Test gameOver after initialization, shouldn't be over since province and no more
+	// than 3 supply piles are == 0 in this instance
+	int i, j = 0;
+	for (i = 0; i < 25; i++)
+	{
+		if (teststate.supplyCount[i] == 0)
+		{
+			j++;
+		}
+	}
+	if ( j < 3)
+	{
+		printf("j: %d\n", j);
+	}
+	
+	printf("%d\n", isGameOver(&teststate));
+
+	
 	
 	// Test with gamestate->supplyCount[province] == 0
-	int i;
-	for (i = 0; i < 25; i++) {
-		printf("%d\n", teststate.supplyCount[i]);
-	}
-	printf("%d\n", isGameOver(&teststate));
+
+
 	
 	// Test with gamestate->supplyCount[province] != 0
 	// Get j in the function to be greater than or equal to 3

@@ -11,12 +11,6 @@
 #include <stdlib.h>
 #include <assert.h>
 
-/*
-int whoseTurn(struct gameState *state) {
-  return state->whoseTurn;
-}
-*/
-
 int main() {
 	// Initialize gameState Struct
 	struct gameState teststate;

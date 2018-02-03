@@ -36,18 +36,44 @@ int main() {
 	// Initialize gameState Struct
 	struct gameState teststate;
 
-	int numplayers = 10;
-	int players[10] = {adventurer, council_room, feast, gardens, minion, remodel, smithy, village, sea_hag, great_hall};
+	int numplayers = 2;
+	int players[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};		
 			
 	// Test with game state where none of the card are in the deck
 	initializeGame(numplayers, players, 2000, &teststate);
-	int i;
+	int i, j;
 	for (i = 0; i < numplayers; i++) {
-		printf("%d\n", fullDeckCount(players[i], curse, &teststate));
+		printf("Player %d cards: \n", i);
+		printf("Player %d's deck count: %d\n", i, teststate.deckCount[i]);
+		printf("Player %d's hand count: %d\n", i, teststate.handCount[i]);
+		printf("Player %d's discard count: %d\n", i, teststate.discardCount[i]);
+		/*for (j = 0; j < 25; j++) {
+			printf("*****\n");
+			printf("%d: %d\n", j, teststate.deck[i][j]);
+			printf("%d: %d\n", j, teststate.hand[i][j]);
+			printf("%d: %d\n", j, teststate.discard[i][j]);
+		}*/
+		printf("\n\n");
 	}
-	
+	printf("%d\n\n", fullDeckCount(0, 0, &teststate));
+	drawCard(0, teststate);
+	discardCard(0, 0, teststate, 1);
 	
 	// Tests with game state where each player has the card
+	/*for (i = 0; i < numplayers; i++) {
+		printf("Player %d cards: \n", i);
+		printf("Player %d's deck count: %d\n", i, teststate.deckCount[i]);
+		printf("Player %d's hand count: %d\n", i, teststate.handCount[i]);
+		printf("Player %d's discard count: %d\n", i, teststate.discardCount[i]);
+		for (j = 0; j < 25; j++) {
+			printf("*****\n");
+			printf("%d: %d\n", j, teststate.deck[i][j]);
+			printf("%d: %d\n", j, teststate.hand[i][j]);
+			printf("%d: %d\n", j, teststate.discard[i][j]);
+		}
+		printf("\n\n");
+	}
+	printf("%d\n\n", fullDeckCount(0, 0, &teststate));*/
 	
 	
 	// See if I can test each of the 3 for statements individually
