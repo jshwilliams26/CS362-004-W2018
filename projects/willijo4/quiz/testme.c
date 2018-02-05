@@ -15,7 +15,7 @@ char *inputString()
 {
     // TODO: rewrite this function
     char chars[5] = { 'r', 'e', 's', 't', '\0' } ;
-    char str[6];
+    static char str[6];
     int c;
     for (c = 0; c < 6; c++) {
     	str[c] = chars[rand() % 5];
