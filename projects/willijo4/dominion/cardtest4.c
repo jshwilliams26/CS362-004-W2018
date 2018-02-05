@@ -41,3 +41,5 @@ int treasure_map_func(struct gameState *state, int currentPlayer, int handPos) {
 	//no second treasure_map found in hand
 	return -1;
 }
+
+int main
