@@ -12,38 +12,6 @@
 #include <stdlib.h>
 #include <assert.h>
 
-
-// Treasure Map function
-/*int treasure_map_func(struct gameState *state, int currentPlayer, int handPos) {
-	// search hand for another treasure_map
-	int index = -1;
-
-	int i;
-	for (i = 0; i < state->handCount[currentPlayer]; i++) {
-		if (state->hand[currentPlayer][i] == treasure_map && i != handPos) {
-			index = i;
-			break;
-		}
-	}
-
-	if (index == -1) {
-		// trash both treasure cards
-		discardCard(handPos, currentPlayer, state, 0);
-		discardCard(index, currentPlayer, state, 0);
-
-		// gain 4 Gold cards
-		for (i = 0; i < 4; i++) {
-			gainCard(gold, state, 1, currentPlayer);
-		}
-
-		// return success
-		return 1;
-	}
-
-	//no second treasure_map found in hand
-	return -1;
-}*/
-
 int main() {
 	// Initialize gameState Struct
 	struct gameState teststate;
@@ -68,7 +36,7 @@ int main() {
 			}
 		}
 		printf("Card count for player %d for treasure_map: %d\n", i, fullDeckCount(i, treasure_map, &teststate));
-		printf("Card count for player %d for gold: %d\n", i, fullDeckCount(i, gold, &teststate));
+		printf("Card count for player %d for gold > 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
 		printf("Card count for player %d for estate: %d\n", i, fullDeckCount(i, estate, &teststate));
 	}
 	for (i = 0; i < teststate.numPlayers; i++) {
@@ -80,14 +48,23 @@ int main() {
 		}
 	}
 
-	printf("--- Results for 0 treasure cards in each player's deck\n");
-	cardEffect(adventurer, choice1, choice2, choice3, &teststate, handPos, &bonus);
+	printf("\n--- Results for 0 treasure cards in each player's deck before calling treasure_map_func\n");
 	for (i = 0; i < teststate.numPlayers; i++) {
 		printf("Current player: %d\n", i);
 		printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
 		printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
 		printf("Card count for player %d for treasure_map: %d\n", i, fullDeckCount(i, treasure_map, &teststate));
-		printf("Card count for player %d for gold: %d\n", i, fullDeckCount(i, gold, &teststate));
+		printf("Card count for player %d for gold > 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
+		printf("Card count for player %d for estate: %d\n", i, fullDeckCount(i, estate, &teststate));
+	}
+	cardEffect(treasure_map, choice1, choice2, choice3, &teststate, handPos, &bonus);
+	printf("--- Results for 0 treasure cards in each player's deck after calling treasure_map_func\n");
+	for (i = 0; i < teststate.numPlayers; i++) {
+		printf("Current player: %d\n", i);
+		printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
+		printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
+		printf("Card count for player %d for treasure_map: %d\n", i, fullDeckCount(i, treasure_map, &teststate));
+		printf("Card count for player %d for gold > 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
 		printf("Card count for player %d for estate: %d\n", i, fullDeckCount(i, estate, &teststate));
 	}
 
@@ -104,14 +81,23 @@ int main() {
 			teststate.deck[i][j] = estate;
 		}
 	}
-	printf("--- Results for 1 treasure card in each player's deck\n");
-	cardEffect(adventurer, choice1, choice2, choice3, &teststate, handPos, &bonus);
+	printf("\n--- Results for 1 treasure card in each player's deck before calling treasure_map_func\n");
 	for (i = 0; i < teststate.numPlayers; i++) {
 		printf("Current player: %d\n", i);
 		printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
 		printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
 		printf("Card count for player %d for treasure_map: %d\n", i, fullDeckCount(i, treasure_map, &teststate));
-		printf("Card count for player %d for gold: %d\n", i, fullDeckCount(i, gold, &teststate));
+		printf("Card count for player %d for gold > 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
+		printf("Card count for player %d for estate: %d\n", i, fullDeckCount(i, estate, &teststate));
+	}
+	cardEffect(treasure_map, choice1, choice2, choice3, &teststate, handPos, &bonus);
+	printf("--- Results for 1 treasure card in each player's deck after calling treasure_map_func\n");
+	for (i = 0; i < teststate.numPlayers; i++) {
+		printf("Current player: %d\n", i);
+		printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
+		printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
+		printf("Card count for player %d for treasure_map: %d\n", i, fullDeckCount(i, treasure_map, &teststate));
+		printf("Card count for player %d for gold > 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
 		printf("Card count for player %d for estate: %d\n", i, fullDeckCount(i, estate, &teststate));
 	}
 
@@ -129,14 +115,23 @@ int main() {
 			teststate.deck[i][j] = estate;
 		}
 	}
-	printf("--- Results for 2 treasure cards in each player's deck\n");
-	cardEffect(adventurer, choice1, choice2, choice3, &teststate, handPos, &bonus);
+	printf("\n--- Results for 2 treasure cards in each player's deck before calling treasure_map_func\n");
 	for (i = 0; i < teststate.numPlayers; i++) {
 		printf("Current player: %d\n", i);
 		printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
 		printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
 		printf("Card count for player %d for treasure_map: %d\n", i, fullDeckCount(i, treasure_map, &teststate));
-		printf("Card count for player %d for gold: %d\n", i, fullDeckCount(i, gold, &teststate));
+		printf("Card count for player %d for gold > 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
+		printf("Card count for player %d for estate: %d\n", i, fullDeckCount(i, estate, &teststate));
+	}
+	cardEffect(treasure_map, choice1, choice2, choice3, &teststate, handPos, &bonus);
+	printf("--- Results for 2 treasure cards in each player's deck after calling treasure_map_func\n");
+	for (i = 0; i < teststate.numPlayers; i++) {
+		printf("Current player: %d\n", i);
+		printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
+		printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
+		printf("Card count for player %d for treasure_map: %d\n", i, fullDeckCount(i, treasure_map, &teststate));
+		printf("Card count for player %d for gold > 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
 		printf("Card count for player %d for estate: %d\n", i, fullDeckCount(i, estate, &teststate));
 	}
 	

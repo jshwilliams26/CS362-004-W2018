@@ -83,6 +83,53 @@ cardtest2: dominion.o cardtest2.c
 
 cardtest3: dominion.o cardtest3.c
 	gcc -o cardtest3 cardtest3.c -g dominion.o rngs.o $(CFLAGS)
+	echo -e "\n*** Card Test 3 Run for sea_hag_func ***" >> unittestresults.out
+	cardtest3 >> unittestresults.out
+	echo -e "\n*** Card Test 3 Coverage ***" >> unittestresults.out
+	gcov -abcfu dominion.c | grep "sea_hag_func" -A 4 >> unittestresults.out
 
 cardtest4: dominion.o cardtest4.c
 	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o $(CFLAGS)
+
+allunittests: dominion.o rngs.o
+	gcc -o unittest1 unittest1.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest2 unittest2.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest3 unittest3.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest4 unittest4.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest1 cardtest1.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest2 cardtest2.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest3 cardtest3.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o $(CFLAGS)
+	
+	echo -e "*** Unit Test 1 Run for getCost ***" >> unittestresults.out
+	unittest1 >> unittestresults.out
+	echo -e "\n*** Unit Test 1 Coverage ***" >> unittestresults.out
+	gcov -abcfu dominion.c | grep "getCost" -A 4 >> unittestresults.out
+	echo -e "\n*** Unit Test 2 Run for supplyCount ***" >> unittestresults.out
+	unittest2 >> unittestresults.out
+	echo -e "\n*** Unit Test 2 Coverage ***" >> unittestresults.out
+	gcov -abcfu dominion.c | grep "supplyCount" -A 4 >> unittestresults.out
+	echo -e "\n*** Unit Test 3 Run for isGameOver ***" >> unittestresults.out
+	unittest3 >> unittestresults.out
+	echo -e "\n*** Unit Test 3 Coverage ***" >> unittestresults.out
+	gcov -abcfu dominion.c | grep "isGameOver" -A 4 >> unittestresults.out
+	echo -e "\n*** Unit Test 4 Run for whoseTurn ***" >> unittestresults.out
+	unittest4 >> unittestresults.out
+	echo -e "\n*** Unit Test 4 Coverage ***" >> unittestresults.out
+	gcov -abcfu dominion.c | grep "whoseTurn" -A 4 >> unittestresults.out
+	echo -e "\n*** Card Test 1 Run for adventurer_func ***" >> unittestresults.out
+	cardtest1 >> unittestresults.out
+	echo -e "\n*** Card Test 1 Coverage ***" >> unittestresults.out
+	gcov -abcfu dominion.c | grep "adventurer_func" -A 4 >> unittestresults.out
+	echo -e "\n*** Card Test 2 Run for smithy_func ***" >> unittestresults.out
+	cardtest2 >> unittestresults.out
+	echo -e "\n*** Card Test 2 Coverage ***" >> unittestresults.out
+	gcov -abcfu dominion.c | grep "smithy_func" -A 4 >> unittestresults.out
+	echo -e "\n*** Card Test 3 Run for sea_hag_func ***" >> unittestresults.out
+	cardtest3 >> unittestresults.out
+	echo -e "\n*** Card Test 3 Coverage ***" >> unittestresults.out
+	gcov -abcfu dominion.c | grep "sea_hag_func" -A 4 >> unittestresults.out
+	echo -e "\n*** Card Test 4 Run for treasure_map_func ***" >> unittestresults.out
+	cardtest4 >> unittestresults.out
+	echo -e "\n*** Card Test 4 Coverage ***" >> unittestresults.out
+	gcov -abcfu dominion.c | grep "treasure_map_func" -A 4 >> unittestresults.out

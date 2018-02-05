@@ -12,23 +12,6 @@
 #include <stdlib.h>
 #include <assert.h>
 
-// Sea Hag function
-/*int sea_hag_func(struct gameState *state, int currentPlayer) {
-	int i;
-	for (i = 0; i < state->numPlayers; i++) {
-		if (i != currentPlayer){
-			state->discard[i][state->discardCount[i]] = state->deck[i][--state->deckCount[i]];
-			--state->deckCount[i];
-			++state->discardCount[i];
-
-			// Top card now a curse
-			state->deck[i][--state->deckCount[i]] = gold;
-		}
-	}
-
-	return 0;
-}*/
-
 int main() {
 	// Initialize gameState Struct
 	struct gameState teststate;
@@ -43,13 +26,12 @@ int main() {
 
 	int i;
 	for (i = 0; i < teststate.numPlayers; i++) {
-		drawCard(i, &teststate);
+		//drawCard(i, &teststate);
 		printf("Current player: %d\n", whoseTurn(&teststate));
 		printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
 		printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
-		printf("Card count for player %d for card %d: %d\n", i, curse, fullDeckCount(i, curse, &teststate));
-		printf("Card count for player %d for card %d: %d\n", i, gold, fullDeckCount(i, gold, &teststate));
-		endTurn(&teststate);
+		printf("Card count for player %d for curse card is greater than 0: %s\n", i, fullDeckCount(i, curse, &teststate) > 0 ? "True" : "False");
+		printf("Card count for player %d for gold card is greater than 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
 	}
 	
 	cardEffect(sea_hag, choice1, choice2, choice3, &teststate, handPos, &bonus);
@@ -60,13 +42,12 @@ int main() {
 	other player should
 	*/
 	for (i = 0; i < teststate.numPlayers; i++) {
-		drawCard(i, &teststate);
+		//drawCard(i, &teststate);
 		printf("Current player: %d\n", whoseTurn(&teststate));
 		printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
 		printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
-		printf("Card count for player %d for card %d: %d\n", i, curse, fullDeckCount(i, curse, &teststate));
-		printf("Card count for player %d for card %d: %d\n", i, gold, fullDeckCount(i, gold, &teststate));
-		endTurn(&teststate);
+		printf("Card count for player %d for curse card is greater than 0: %s\n", i, fullDeckCount(i, curse, &teststate) > 0 ? "True" : "False");
+		printf("Card count for player %d for gold card is greater than 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
 	}
 	
 	return 0;
