@@ -26,7 +26,6 @@ int main() {
 
 	int i;
 	for (i = 0; i < teststate.numPlayers; i++) {
-		//drawCard(i, &teststate);
 		printf("Current player: %d\n", whoseTurn(&teststate));
 		printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
 		printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
@@ -42,7 +41,6 @@ int main() {
 	other player should
 	*/
 	for (i = 0; i < teststate.numPlayers; i++) {
-		//drawCard(i, &teststate);
 		printf("Current player: %d\n", whoseTurn(&teststate));
 		printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
 		printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
