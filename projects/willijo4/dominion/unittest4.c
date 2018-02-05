@@ -15,12 +15,12 @@
 int main() {
 	// Initialize gameState Struct
 	struct gameState teststate;
-	int players[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};		
+	int cards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};		
 
 	printf("\n*** Testing whoseTurn 5X with 1 player ***\n");
 	int numplayers = 1;	
 	memset(&teststate, '\0', sizeof(struct gameState));
-	initializeGame(numplayers, players, 2000, &teststate);
+	initializeGame(numplayers, cards, 2000, &teststate);
 	printf("whoseTurn(teststate) == 0: %s\n", whoseTurn(&teststate) == 0 ? "True" : "False");
 	assert(whoseTurn(&teststate) == 0);
 	endTurn(&teststate);
@@ -40,7 +40,7 @@ int main() {
 	printf("*** Testing whoseTurn 5X with 2 players ***\n");
 	numplayers = 2;	
 	memset(&teststate, '\0', sizeof(struct gameState));
-	initializeGame(numplayers, players, 2000, &teststate);
+	initializeGame(numplayers, cards, 2000, &teststate);
 	printf("whoseTurn(teststate) == 0: %s\n", whoseTurn(&teststate) == 0 ? "True" : "False");
 	assert(whoseTurn(&teststate) == 0);
 	endTurn(&teststate);
@@ -60,7 +60,7 @@ int main() {
 	printf("*** Testing whoseTurn 5X with 3 players ***\n");
 	numplayers = 3;	
 	memset(&teststate, '\0', sizeof(struct gameState));
-	initializeGame(numplayers, players, 2000, &teststate);
+	initializeGame(numplayers, cards, 2000, &teststate);
 	printf("whoseTurn(teststate) == 0: %s\n", whoseTurn(&teststate) == 0 ? "True" : "False");
 	assert(whoseTurn(&teststate) == 0);
 	endTurn(&teststate);
@@ -80,7 +80,7 @@ int main() {
 	printf("*** Testing whoseTurn 5X with 4 players ***\n");
 	numplayers = 4;	
 	memset(&teststate, '\0', sizeof(struct gameState));
-	initializeGame(numplayers, players, 2000, &teststate);
+	initializeGame(numplayers, cards, 2000, &teststate);
 	printf("whoseTurn(teststate) == 0: %s\n", whoseTurn(&teststate) == 0 ? "True" : "False");
 	assert(whoseTurn(&teststate) == 0);
 	endTurn(&teststate);
@@ -100,7 +100,7 @@ int main() {
 	printf("\n*** Testing whoseTurn 5X with 5 players ***\n");
 	numplayers = 5;	
 	memset(&teststate, '\0', sizeof(struct gameState));
-	initializeGame(numplayers, players, 2000, &teststate);
+	initializeGame(numplayers, cards, 2000, &teststate);
 	printf("whoseTurn(teststate) == 0: %s\n", whoseTurn(&teststate) == 0 ? "True" : "False");
 	assert(whoseTurn(&teststate) == 0);
 	endTurn(&teststate);

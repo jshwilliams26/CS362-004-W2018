@@ -90,7 +90,7 @@ int main() {
 		for (j = 0; j < teststate.deckCount[i]-1; j++) {
 			teststate.deck[i][j] = estate;
 		}
-		teststate.deck[i][teststate.deckCount[i]-1] = copper;
+		teststate.deck[i][teststate.deckCount[i]-2] = copper;
 	}
 	printf("--- Results for 1 treasure card in each player's deck\n");
 	cardEffect(adventurer, choice1, choice2, choice3, &teststate, handPos, &bonus);
@@ -125,8 +125,8 @@ int main() {
 		for (j = 0; j < teststate.deckCount[i]-2; j++) {
 			teststate.deck[i][j] = estate;
 		}
+		teststate.deck[i][teststate.deckCount[i]-3] = copper;
 		teststate.deck[i][teststate.deckCount[i]-2] = copper;
-		teststate.deck[i][teststate.deckCount[i]-1] = copper;
 	}
 	printf("--- Results for 2 treasure cards in each player's deck\n");
 	cardEffect(adventurer, choice1, choice2, choice3, &teststate, handPos, &bonus);

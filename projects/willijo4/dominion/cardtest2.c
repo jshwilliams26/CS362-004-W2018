@@ -18,12 +18,12 @@ int main() {
     int handPos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
 
 	int numplayers = 1;
-	int players[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};		
+	int cards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};		
 	
 	printf("\n*** Running smithy_func for 1 player ***\n");
 
 	// Test with game state where none of the card are in the deck
-	initializeGame(numplayers, players, 2000, &teststate);
+	initializeGame(numplayers, cards, 2000, &teststate);
 
 	// There should be 3 more cards after the smithy card is drawn than before
 	printf("Player %d's number of cards in hand == 0 before smithy_func: %s\n", whoseTurn(&teststate), numHandCards(&teststate) == 0 ? "True" : "False");
@@ -36,7 +36,7 @@ int main() {
 	// Test with game state where none of the card are in the deck
 	numplayers = 2;	
 	memset(&teststate, '\0', sizeof(struct gameState));
-	initializeGame(numplayers, players, 2000, &teststate);
+	initializeGame(numplayers, cards, 2000, &teststate);
 
 	// There should be 3 more cards after the smithy card is drawn than before
 	printf("Player %d's number of cards in hand == 5 before smithy_func: %s\n", whoseTurn(&teststate), numHandCards(&teststate) == 5 ? "True" : "False");
@@ -56,7 +56,7 @@ int main() {
 	// Test with game state where none of the card are in the deck
 	numplayers = 3;
 	memset(&teststate, '\0', sizeof(struct gameState));
-	initializeGame(numplayers, players, 2000, &teststate);
+	initializeGame(numplayers, cards, 2000, &teststate);
 
 	// There should be 3 more cards after the smithy card is drawn than before
 	printf("Player %d's number of cards in hand == 5 before smithy_func: %s\n", whoseTurn(&teststate), numHandCards(&teststate) == 5 ? "True" : "False");
@@ -82,7 +82,7 @@ int main() {
 	// Test with game state where none of the card are in the deck
 	numplayers = 4;
 	memset(&teststate, '\0', sizeof(struct gameState));
-	initializeGame(numplayers, players, 2000, &teststate);
+	initializeGame(numplayers, cards, 2000, &teststate);
 
 	// There should be 3 more cards after the smithy card is drawn than before
 	printf("Player %d's number of cards in hand == 5 before smithy_func: %s\n", whoseTurn(&teststate), numHandCards(&teststate) == 5 ? "True" : "False");
