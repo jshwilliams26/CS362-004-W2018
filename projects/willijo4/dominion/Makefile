@@ -91,6 +91,7 @@ cardtest3: dominion.o cardtest3.c
 cardtest4: dominion.o cardtest4.c
 	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o $(CFLAGS)
 
+# Make and run everything
 allunittests: dominion.o rngs.o
 	gcc -o unittest1 unittest1.c -g dominion.o rngs.o $(CFLAGS)
 	gcc -o unittest2 unittest2.c -g dominion.o rngs.o $(CFLAGS)
