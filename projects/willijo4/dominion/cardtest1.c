@@ -35,6 +35,7 @@ int main() {
 				treasurehandcount++;
 			}
 		}
+		printf("Treasure cards in hand for player %d: %d\n", i, treasurehandcount);
 		printf("Card count for player %d for copper: %d\n", i, fullDeckCount(i, copper, &teststate));
 		printf("Card count for player %d for silver: %d\n", i, fullDeckCount(i, silver, &teststate));
 		printf("Card count for player %d for gold: %d\n", i, fullDeckCount(i, gold, &teststate));
@@ -70,6 +71,7 @@ int main() {
 				treasurehandcount++;
 			}
 		}
+		printf("Treasure cards in hand for player %d == 0: %s\n", i, treasurehandcount == 0 ? "True" : "False");
 		printf("Card count for player %d for copper: %d\n", i, fullDeckCount(i, copper, &teststate));
 		printf("Card count for player %d for silver: %d\n", i, fullDeckCount(i, silver, &teststate));
 		printf("Card count for player %d for gold: %d\n", i, fullDeckCount(i, gold, &teststate));
@@ -104,6 +106,7 @@ int main() {
 				treasurehandcount++;
 			}
 		}
+		printf("Treasure cards in hand for player %d == 1: %s\n", i, treasurehandcount == 1 ? "True" : "False");
 		printf("Card count for player %d for copper: %d\n", i, fullDeckCount(i, copper, &teststate));
 		printf("Card count for player %d for silver: %d\n", i, fullDeckCount(i, silver, &teststate));
 		printf("Card count for player %d for gold: %d\n", i, fullDeckCount(i, gold, &teststate));
@@ -140,7 +143,7 @@ int main() {
 				treasurehandcount++;
 			}
 		}
-		printf("Treasure cards in hand for player %d: %d\n", i, treasurehandcount);
+		printf("Treasure cards in hand for player %d == 2: %s\n", i, treasurehandcount == 2 ? "True" : "False");
 		printf("Card count for player %d for copper: %d\n", i, fullDeckCount(i, copper, &teststate));
 		printf("Card count for player %d for silver: %d\n", i, fullDeckCount(i, silver, &teststate));
 		printf("Card count for player %d for gold: %d\n", i, fullDeckCount(i, gold, &teststate));

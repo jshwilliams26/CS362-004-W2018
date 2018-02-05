@@ -41,50 +41,55 @@ int main() {
 
 	
 	// Set the supply count of province to 0 and test again if the game is over
-	printf("--- Province supply count set to 0 after initialization\n");
+	printf("--- Province supply count set to 0 after initialization ---\n");
 	teststate.supplyCount[province] = 0;
 	j = 0;
 	for (i = 0; i < 25; i++)
 		if (teststate.supplyCount[i] == 0) j++;
 	printf("Number of supply piles at 0: %d\n", j);
+	printf("Province supply at 0: %s\n", teststate.supplyCount[province] == 0 ? "True" : "False");
 	printf("Game is over: %s\n", isGameOver(&teststate) == 1 ? "True" : "False");
 
 	// Reinitialize the game, then set the supply of 2 cards to 0, then 3 cards, and
 	// determine if the game is over in each instance
-	printf("\n*** Game reinitialized, game should not be over\n");
+	printf("\n*** Game reinitialized, game should not be over ***\n");
 	memset(&teststate, '\0', sizeof(struct gameState));
 	initializeGame(numplayers, cards, 2000, &teststate);
 	j = 0;
 	for (i = 0; i < 25; i++)
 		if (teststate.supplyCount[i] == 0) j++;
 	printf("Number of supply piles at 0: %d\n", j);
+	printf("Province supply at 0: %s\n", teststate.supplyCount[province] == 0 ? "True" : "False");
 	printf("Game is over: %s\n", isGameOver(&teststate) == 1 ? "True" : "False");
 
 	// Set supply of a card to 0
-	printf("--- Supply count of cutpurse set to 0\n");
+	printf("--- Supply count of cutpurse set to 0 ---\n");
 	teststate.supplyCount[cutpurse] = 0;
 	j = 0;
 	for (i = 0; i < 25; i++)
 		if (teststate.supplyCount[i] == 0) j++;
 	printf("Number of supply piles at 0: %d\n", j);
+	printf("Province supply at 0: %s\n", teststate.supplyCount[province] == 0 ? "True" : "False");
 	printf("Game is over: %s\n", isGameOver(&teststate) == 1 ? "True" : "False");
 
 	// Set supply of another card to 0
-	printf("--- Supply count of village set to 0\n");
+	printf("--- Supply count of village set to 0 ---\n");
 	teststate.supplyCount[village] = 0;
 	j = 0;
 	for (i = 0; i < 25; i++)
 		if (teststate.supplyCount[i] == 0) j++;
 	printf("Number of supply piles at 0: %d\n", j);
+	printf("Province supply at 0: %s\n", teststate.supplyCount[province] == 0 ? "True" : "False");
 	printf("Game is over: %s\n", isGameOver(&teststate) == 1 ? "True" : "False");
 
 	// Set supply of another card to 0
-	printf("--- Supply count of tribute set to 0\n");
+	printf("--- Supply count of tribute set to 0 ---\n");
 	teststate.supplyCount[tribute] = 0;
 	j = 0;
 	for (i = 0; i < 25; i++)
 		if (teststate.supplyCount[i] == 0) j++;
 	printf("Number of supply piles at 0: %d\n", j);
+	printf("Province supply at 0: %s\n", teststate.supplyCount[province] == 0 ? "True" : "False");
 	printf("Game is over: %s\n", isGameOver(&teststate) == 1 ? "True" : "False");
 	
 	printf("\n");

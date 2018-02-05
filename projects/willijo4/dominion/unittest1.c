@@ -1,7 +1,7 @@
 //****************************************************************
 // Name: Josh Williams (willijo4)
 // Assignment: 3
-// Description: Unit test for fullDeckCount function
+// Description: Unit test for getCost function
 //****************************************************************
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -13,51 +13,95 @@
 #include <assert.h>
 
 int main() {
-	// Initialize gameState Struct
-	struct gameState teststate;
-
-	int cards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};		
-	
-	// Test with 1 player, the returned count should be 0
-	printf("*** Testing with 1 player and summing number of cards for all cards,\n*** this should be equal to 0 ***\n");
-	int numplayers = 1;
-	initializeGame(numplayers, cards, 2000, &teststate);
-	int i, totalcards = 0;
-	for (i = 0; i < 25; i++) {
-		totalcards += fullDeckCount(0, i, &teststate);
+	int i;
+	for (i = -1; i < 30; i++) {
+		switch (i) 
+		{
+			case 0:
+				printf("Card curse returns %d: %s\n", 0, getCost(i) == 0 ? "True" : "False");
+				break;
+			case 1:
+				printf("Card estate returns %d: %s\n", 2, getCost(i) == 2 ? "True" : "False");
+				break;
+			case 2:
+				printf("Card duchy returns %d: %s\n", 5, getCost(i) == 5 ? "True" : "False");
+				break;
+			case 3:
+				printf("Card province returns %d: %s\n", 8, getCost(i) == 8 ? "True" : "False");
+				break;
+			case 4:
+				printf("Card copper returns %d: %s\n", 0, getCost(i) == 0 ? "True" : "False");
+				break;
+			case 5:
+				printf("Card silver returns %d: %s\n", 3, getCost(i) == 3 ? "True" : "False");
+				break;
+			case 6:
+				printf("Card gold returns %d: %s\n", 6, getCost(i) == 6 ? "True" : "False");
+				break;
+			case 7:
+				printf("Card adventurer returns %d: %s\n", 6, getCost(i) == 6 ? "True" : "False");
+				break;
+			case 8:
+				printf("Card council_room returns %d: %s\n", 5, getCost(i) == 5 ? "True" : "False");
+				break;
+			case 9:
+				printf("Card feast returns %d: %s\n", 4, getCost(i) == 4 ? "True" : "False");
+				break;
+			case 10:
+				printf("Card gardens returns %d: %s\n", 4, getCost(i) == 4 ? "True" : "False");
+				break;
+			case 11:
+				printf("Card mine returns %d: %s\n", 5, getCost(i) == 5 ? "True" : "False");
+				break;
+			case 12:
+				printf("Card remodel returns %d: %s\n", 4, getCost(i) == 4 ? "True" : "False");
+				break;
+			case 13:
+				printf("Card smithy returns %d: %s\n", 4, getCost(i) == 4 ? "True" : "False");
+				break;
+			case 14:
+				printf("Card village returns %d: %s\n", 3, getCost(i) == 3 ? "True" : "False");
+				break;
+			case 15:
+				printf("Card baron returns %d: %s\n", 4, getCost(i) == 4 ? "True" : "False");
+				break;
+			case 16:
+				printf("Card great_hall returns %d: %s\n", 3, getCost(i) == 3 ? "True" : "False");
+				break;
+			case 17:
+				printf("Card minion returns %d: %s\n", 5, getCost(i) == 5 ? "True" : "False");
+				break;
+			case 18:
+				printf("Card steward returns %d: %s\n", 3, getCost(i) == 3 ? "True" : "False");
+				break;
+			case 19:
+				printf("Card tribute returns %d: %s\n", 5, getCost(i) == 5 ? "True" : "False");
+				break;
+			case 20:
+				printf("Card ambassador returns %d: %s\n", 3, getCost(i) == 3 ? "True" : "False");
+				break;
+			case 21:
+				printf("Card cutpurse returns %d: %s\n", 4, getCost(i) == 4 ? "True" : "False");
+				break;
+			case 22: 
+				printf("Card embargo returns %d: %s\n", 2, getCost(i) == 2 ? "True" : "False");
+				break;
+			case 23:
+				printf("Card outpost returns %d: %s\n", 5, getCost(i) == 5 ? "True" : "False");
+				break;
+			case 24:
+				printf("Card salvager returns %d: %s\n", 4, getCost(i) == 4 ? "True" : "False");
+				break;
+			case 25:
+				printf("Card sea_hag returns %d: %s\n", 4, getCost(i) == 4 ? "True" : "False");
+				break;
+			case 26:
+				printf("Card treasure_map returns %d: %s\n", 4, getCost(i) == 4 ? "True" : "False");
+				break;
+			default:
+				printf("Input %d returns -1: %s\n", i, getCost(i) == -1 ? "True" : "False");
+		}
 	}
-	printf("Full deck count for player %d is 0: %s\n", whoseTurn(&teststate), totalcards == 0 ? "True": "False");
-		
-	// Test with game state where none of the card are in the deck
-	printf("\n*** Initializing with 2 players, will run fullDeckCount for cards 1 and 4 ***\n");
-	numplayers = 2;
-	memset(&teststate, '\0', sizeof(struct gameState));
-	initializeGame(numplayers, cards, 2000, &teststate);
-	for (i = 0; i < numplayers; i++) {
-		printf("Full deck count for player %d for card %d is 3: %s\n", i, 1, fullDeckCount(i, 1, &teststate) == 3 ? "True" : "False");
-		printf("Full deck count for player %d for card %d is 7: %s\n", i, 4, fullDeckCount(i, 4, &teststate) == 7 ? "True" : "False");
-		printf("Deck count for player %d is 5: %s\n", i, teststate.deckCount[i] == 5 ? "True" : "False");
-		printf("Hand count for player %d is 5: %s\n", i, teststate.handCount[i] == 5 ? "True" : "False");
-		endTurn(&teststate);
-	}
-	printf("*** Drawing a card for each player ***\n");
-	for (i = 0; i < numplayers; i++) {
-		drawCard(i, &teststate);
-		printf("Full deck count for player %d for card %d is 3: %s\n", i, 1, fullDeckCount(i, 1, &teststate) == 3 ? "True" : "False");
-		printf("Full deck count for player %d for card %d is 7: %s\n", i, 4, fullDeckCount(i, 4, &teststate) == 7 ? "True" : "False");
-		printf("Deck count for player %d is 4: %s\n", i, teststate.deckCount[i] == 4 ? "True" : "False");
-		printf("Hand count for player %d is 6: %s\n", i, teststate.handCount[i] == 6 ? "True" : "False");
-		endTurn(&teststate);
-	}
-	printf("*** Discarding a card for each player ***\n");
-	for (i = 0; i < numplayers; i++) {
-		discardCard(teststate.handCount[i], i, &teststate, 0);
-		printf("Deck count for player %d is 5: %s\n", i, teststate.deckCount[i] == 5 ? "True" : "False");
-		printf("Hand count for player %d is 4: %s\n", i, teststate.handCount[i] == 4 ? "True" : "False");
-		endTurn(&teststate);
-	}
-	
-	printf("\n");
 	
 	return 0;
 }

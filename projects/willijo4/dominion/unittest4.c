@@ -30,7 +30,7 @@ int main() {
 	printf("whoseTurn(teststate) == 0: %s\n", whoseTurn(&teststate) == 0 ? "True" : "False");
 	assert(whoseTurn(&teststate) == 0);
 	endTurn(&teststate);
-	printf("whoseTurn(teststate) == 0: %s\n\n", whoseTurn(&teststate) == 0 ? "True" : "False");
+	printf("whoseTurn(teststate) == 0: %s\n", whoseTurn(&teststate) == 0 ? "True" : "False");
 	assert(whoseTurn(&teststate) == 0);
 	endTurn(&teststate);
 	printf("whoseTurn(teststate) == 0: %s\n\n", whoseTurn(&teststate) == 0 ? "True" : "False");
@@ -50,7 +50,7 @@ int main() {
 	printf("whoseTurn(teststate) == 0: %s\n", whoseTurn(&teststate) == 0 ? "True" : "False");
 	assert(whoseTurn(&teststate) == 0);
 	endTurn(&teststate);
-	printf("whoseTurn(teststate) == 1: %s\n\n", whoseTurn(&teststate) == 1 ? "True" : "False");
+	printf("whoseTurn(teststate) == 1: %s\n", whoseTurn(&teststate) == 1 ? "True" : "False");
 	assert(whoseTurn(&teststate) == 1);
 	endTurn(&teststate);
 	printf("whoseTurn(teststate) == 0: %s\n\n", whoseTurn(&teststate) == 0 ? "True" : "False");
@@ -70,7 +70,7 @@ int main() {
 	printf("whoseTurn(teststate) == 2: %s\n", whoseTurn(&teststate) == 2 ? "True" : "False");
 	assert(whoseTurn(&teststate) == 2);
 	endTurn(&teststate);
-	printf("whoseTurn(teststate) == 0: %s\n\n", whoseTurn(&teststate) == 0 ? "True" : "False");
+	printf("whoseTurn(teststate) == 0: %s\n", whoseTurn(&teststate) == 0 ? "True" : "False");
 	assert(whoseTurn(&teststate) == 0);
 	endTurn(&teststate);
 	printf("whoseTurn(teststate) == 1: %s\n\n", whoseTurn(&teststate) == 1 ? "True" : "False");
@@ -97,7 +97,7 @@ int main() {
 	assert(whoseTurn(&teststate) == 0);
 	endTurn(&teststate);
 
-	printf("\n*** Testing whoseTurn 5X with 5 players ***\n");
+	printf("*** Testing whoseTurn 5X with 5 players ***\n");
 	numplayers = 5;	
 	memset(&teststate, '\0', sizeof(struct gameState));
 	initializeGame(numplayers, cards, 2000, &teststate);
@@ -110,10 +110,10 @@ int main() {
 	printf("whoseTurn(teststate) == 0: %s\n", whoseTurn(&teststate) == 0 ? "True" : "False");
 	assert(whoseTurn(&teststate) == 0);
 	endTurn(&teststate);
-	printf("whoseTurn(teststate) == 0: %s\n\n", whoseTurn(&teststate) == 0 ? "True" : "False");
+	printf("whoseTurn(teststate) == 0: %s\n", whoseTurn(&teststate) == 0 ? "True" : "False");
 	assert(whoseTurn(&teststate) == 0);
 	endTurn(&teststate);
-	printf("whoseTurn(teststate) == 0: %s\n\n", whoseTurn(&teststate) == 0 ? "True" : "False");
+	printf("whoseTurn(teststate) == 0: %s\n", whoseTurn(&teststate) == 0 ? "True" : "False");
 	assert(whoseTurn(&teststate) == 0);
 	endTurn(&teststate);
 
