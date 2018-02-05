@@ -42,3 +42,35 @@ int adventurer_func(int drawntreasure, struct gameState *state, int currentPlaye
 
 	return 0;
 }
+
+int main() {
+	// Initialize gameState Struct
+	struct gameState teststate;
+    int handPos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+
+	int cards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};		
+
+	int numplayers = 2;
+	memset(&teststate, '\0', sizeof(struct gameState));
+	printf("\n*** Initializing game with 2 players ***\n");
+	initializeGame(numplayers, cards, 2000, &teststate);
+
+	
+	// drawntreasure will always == 0, since the function will always be passes
+	// a value of 0 for this function
+	// deckcount of player == 0
+		// Try with drawn card == to money
+		
+		
+		// Try with drawn card != money
+		
+	
+	// deckcount of player == 1
+		// Try with drawn card == to money
+		
+		
+		// Try with drawn card != money
+			
+		
+	return 0;
+}

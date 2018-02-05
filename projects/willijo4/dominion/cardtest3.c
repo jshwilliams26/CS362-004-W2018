@@ -34,11 +34,24 @@ int main() {
 	struct gameState teststate;
     int handPos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
 
-	int players[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};		
+	int cards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};		
 			
-	int numplayers = 2;
+	int numplayers = 4;
 	memset(&teststate, '\0', sizeof(struct gameState));
-	initializeGame(numplayers, players, 2000, &teststate);
+	printf("\n*** Initializing game with 2 players ***\n");
+	initializeGame(numplayers, cards, 2000, &teststate);
+
+	int i;
+	for (i = 0; i < teststate.numPlayers; i++) {
+		drawCard(i, &teststate);
+		printf("Current player: %d\n", whoseTurn(&teststate));
+		printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
+		printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
+		printf("Card count for player %d for card %d: %d\n", i, curse, fullDeckCount(i, curse, &teststate));
+		printf("Card count for player %d for card %d: %d\n", i, gold, fullDeckCount(i, gold, &teststate));
+		endTurn(&teststate);
+	}
+	
 	cardEffect(sea_hag, choice1, choice2, choice3, &teststate, handPos, &bonus);
 	printf("\n*** Testing sea_hag_func with 2 players ***\n");
 	
@@ -46,10 +59,14 @@ int main() {
 	Current player shouldn't have a curse on top of their deck, the
 	other player should
 	*/
-	int i;
 	for (i = 0; i < teststate.numPlayers; i++) {
-		printf("player: %d\tcard: %d\tcardCount: %d\n", i, curse, fullDeckCount(i, curse, &teststate));
-		printf("player: %d\tcard: %d\tcardCount: %d\n", i, gold, fullDeckCount(i, gold, &teststate));
+		drawCard(i, &teststate);
+		printf("Current player: %d\n", whoseTurn(&teststate));
+		printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
+		printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
+		printf("Card count for player %d for card %d: %d\n", i, curse, fullDeckCount(i, curse, &teststate));
+		printf("Card count for player %d for card %d: %d\n", i, gold, fullDeckCount(i, gold, &teststate));
+		endTurn(&teststate);
 	}
 	
 	return 0;
