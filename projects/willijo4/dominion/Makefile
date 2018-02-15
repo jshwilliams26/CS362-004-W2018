@@ -40,9 +40,16 @@ clean:
 
 randomtestadventurer: dominion.o randomtestadventurer.c
 	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o $(CFLAGS)
+	randomtestadventurer
+	gcov -abcfu dominion.c | grep "adventurer" -A 5
 
 randomtestcard1: dominion.o randomtestcard1.c
 	gcc -o randomtestcard1 randomtestcard1.c -g dominion.o rngs.o $(CFLAGS)
+	randomtestcard1
+	gcov -abcfu dominion.c | grep "smithy" -A 4
+	gcov -abcfu dominion.c | grep "dominion" -A 7
 
 randomtestcard2: dominion.o randomtestcard2.c
 	gcc -o randomtestcard2 randomtestcard2.c -g dominion.o rngs.o $(CFLAGS)
+	randomtestadventurer
+	gcov -abcfu dominion.c

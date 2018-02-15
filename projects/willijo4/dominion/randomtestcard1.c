@@ -26,22 +26,36 @@ int main() {
 	printf("\n*** Running smithy_func for 2 players ***\n");
 
 	// Test with game state where none of the card are in the deck
-	numplayers = rand() % 2 + 2;
-	handPos = 0;//rand() % 4 + 4;	
-	memset(&teststate, '\0', sizeof(struct gameState));
-	initializeGame(numplayers, cards, 2000, &teststate);
+	numplayers = 2;
+	int numHand5before = 0, numHandNot5before = 0, numHand7after = 0, numHandNot7after = 0;
 
-	// There should be 3 more cards after the smithy card is drawn than before
-	printf("Player %d's number of cards in hand == 5 before smithy_func: %s\n", whoseTurn(&teststate), numHandCards(&teststate) == 5 ? "True" : "False");
-	cardEffect(smithy, choice1, choice2, choice3, &teststate, handPos, &bonus);
-	printf("Player %d's number of cards in hand == 7 after smithy_func: %s\n", whoseTurn(&teststate), numHandCards(&teststate) == 7 ? "True" : "False");
-	endTurn(&teststate);
-
-	// There should be 3 more cards after the smithy card is drawn than before
-	printf("Player %d's number of cards in hand == 5 before smithy_func: %s\n", whoseTurn(&teststate), numHandCards(&teststate) == 5 ? "True" : "False");
-	cardEffect(smithy, choice1, choice2, choice3, &teststate, handPos, &bonus);
-	printf("Player %d's number of cards in hand == 7 after smithy_func: %s\n", whoseTurn(&teststate), numHandCards(&teststate) == 7 ? "True" : "False");
-	endTurn(&teststate);
+	int t;
+	for (t = 0; t < 10000; t++) {
+		handPos = rand() % 100 + -2;
+		memset(&teststate, '\0', sizeof(struct gameState));
+		initializeGame(numplayers, cards, 2000, &teststate);
+		
+		// There should be 3 more cards after the smithy card is drawn than before
+		printf("Player %d's number of cards in hand == 5 before smithy_func: %s\n", whoseTurn(&teststate), numHandCards(&teststate) == 5 ? "True" : "False");
+		if (numHandCards(&teststate) == 5) numHand5before++;
+		else numHandNot5before++;
+		cardEffect(smithy, choice1, choice2, choice3, &teststate, handPos, &bonus);
+		printf("Player %d's number of cards in hand == 7 after smithy_func: %s\n", whoseTurn(&teststate), numHandCards(&teststate) == 7 ? "True" : "False");			endTurn(&teststate);
+		if (numHandCards(&teststate) == 7) numHand7after++;
+		else numHandNot7after++;
+		
+		// There should be 3 more cards after the smithy card is drawn than before
+		printf("Player %d's number of cards in hand == 5 before smithy_func: %s\n", whoseTurn(&teststate), numHandCards(&teststate) == 5 ? "True" : "False");
+		if (numHandCards(&teststate) == 5) numHand5before++;
+		else numHandNot5before++;
+		cardEffect(smithy, choice1, choice2, choice3, &teststate, handPos, &bonus);
+		printf("Player %d's number of cards in hand == 7 after smithy_func: %s\n", whoseTurn(&teststate), numHandCards(&teststate) == 7 ? "True" : "False");			endTurn(&teststate);
+		endTurn(&teststate);
+		if (numHandCards(&teststate) == 7) numHand7after++;
+		else numHandNot7after++;
+	}
+	
+	printf("%d\t%d\t%d\t%d\n", numHand5before, numHandNot5before, numHand7after, numHandNot7after);
 	
 	return 0;
 }
