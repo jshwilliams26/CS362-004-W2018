@@ -36,7 +36,7 @@ int main() {
 	int numplayers = 2;
 
 	int r;
-	for (r = 0; r < 200; r++) {
+	for (r = 0; r < 10000; r++) {
 		memset(&teststate, '\0', sizeof(struct gameState));
 		printf("\n*** Initializing game with 2 players ***\n");
 		initializeGame(numplayers, cards, 2000, &teststate);
