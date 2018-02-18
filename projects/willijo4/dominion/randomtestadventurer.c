@@ -32,70 +32,67 @@ int main() {
 
 	int cards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};		
 
-	int i, j;
+	int j;
 	int numplayers = 2;
 
+	int treasureInDeckAndWorking = 0, treasureInDeckAndNOTWorking = 0, treasureNotInDeckBefore = 0, numTreasureOneWorking = 0, numTreasureOneNOTWorking = 0;
+
 	int r;
-	for (r = 0; r < 10000; r++) {
+	for (r = 0; r < 100000; r++) {
 		memset(&teststate, '\0', sizeof(struct gameState));
-		printf("\n*** Initializing game with 2 players ***\n");
 		initializeGame(numplayers, cards, 2000, &teststate);
-		//printf("--- Showing the initial state of each player's hand and deck\n");
 
-		int handBefore = 0, deckBefore = 0, handAfter = 0, deckAfter = 0, treasureBefore = 0, treasureAfter = 0;
+		// Setting all cards for first player to random cards
+		for (j = 0; j < teststate.handCount[0]; j++)
+			teststate.hand[0][j] = (rand() % (26 + 1 - 0)) + 0;
+		for (j = 0; j < teststate.deckCount[0]; j++)
+			teststate.deck[0][j] = (rand() % (26 + 1 - 0)) + 0;
 
-		// Setting all cards for both players to estate before starting
-		printf("--- Setting all cards in each player's hand to random cards\n");
-		for (i = 0; i < teststate.numPlayers; i++) {
-			for (j = 0; j < teststate.handCount[i]; j++) {
-				teststate.hand[i][j] = (rand() % (26 + 1 - 0)) + 0;
-			}
-			for (j = 0; j < teststate.deckCount[i]; j++) {
-				teststate.deck[i][j] = (rand() % (26 + 1 - 0)) + 0;
-			}
-		}
-		for (i = 0; i < teststate.numPlayers; i++) {
-			printf("Current player: %d\n", i);
-			printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
-			printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
-			int treasurehandcount = 0;
-			for (j = 0; j < teststate.handCount[i]; j++) {
-				if (teststate.hand[i][j] == copper || teststate.hand[i][j] == silver || teststate.hand[i][j] == gold) {
-					treasurehandcount++;
-				}
-			}
-			printf("Treasure cards in hand for player %d: %d\n", i, treasurehandcount);
-			int treasuredeckcount = 0;
-			for (j = 0; j < teststate.deckCount[i]; j++) {
-				if (teststate.deck[i][j] == copper || teststate.deck[i][j] == silver || teststate.deck[i][j] == gold) {
-					treasuredeckcount++;
-				}
-			}
-			printf("Treasure cards in deck for player %d: %d\n", i, treasuredeckcount);
-		}
+		int treasurehandbefore = 0;
+		for (j = 0; j < teststate.handCount[0]; j++)
+			if (teststate.hand[0][j] == copper || teststate.hand[0][j] == silver || teststate.hand[0][j] == gold)
+				treasurehandbefore++;
+		
+		int treasuredeckbefore = 0;
+		for (j = 0; j < teststate.deckCount[0]; j++)
+			if (teststate.deck[0][j] == copper || teststate.deck[0][j] == silver || teststate.deck[0][j] == gold)
+				treasuredeckbefore++;
+		
 		// Random number of treasure cards
-		printf("--- Playing the adventurer card\n");
 		cardEffect(adventurer, choice1, choice2, choice3, &teststate, handPos, &bonus);
-		for (i = 0; i < teststate.numPlayers; i++) {
-			printf("Current player: %d\n", i);
-			printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
-			printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
-			int treasurehandcount = 0;
-			for (j = 0; j < teststate.handCount[i]; j++) {
-				if (teststate.hand[i][j] == copper || teststate.hand[i][j] == silver || teststate.hand[i][j] == gold) {
-					treasurehandcount++;
-				}
-			}
-			printf("Treasure cards in hand for player %d: %d\n", i, treasurehandcount);
-			int treasuredeckcount = 0;
-			for (j = 0; j < teststate.deckCount[i]; j++) {
-				if (teststate.deck[i][j] == copper || teststate.deck[i][j] == silver || teststate.deck[i][j] == gold) {
-					treasuredeckcount++;
-				}
-			}
-			printf("Treasure cards in deck for player %d: %d\n", i, treasuredeckcount);
-		}
+
+		for (j = 0; j < teststate.handCount[0]; j++)
+			teststate.hand[0][j] = (rand() % (26 + 1 - 0)) + 0;
+		for (j = 0; j < teststate.deckCount[0]; j++)
+			teststate.deck[0][j] = (rand() % (26 + 1 - 0)) + 0;
+
+		int treasurehandafter = 0;
+		for (j = 0; j < teststate.handCount[0]; j++)
+			if (teststate.deck[0][j] == copper || teststate.deck[0][j] == silver || teststate.deck[0][j] == gold)
+				treasurehandafter++;
+		
+		int treasuredeckafter = 0;
+		for (j = 0; j < teststate.deckCount[0]; j++)
+			if (teststate.deck[0][j] == copper || teststate.deck[0][j] == silver || teststate.deck[0][j] == gold)
+				treasuredeckafter++;
+		
+		if (treasuredeckbefore >= 2 && (treasurehandafter - treasurehandbefore == treasuredeckbefore - treasuredeckafter))
+			treasureInDeckAndWorking++;
+		else if (treasuredeckbefore >= 2 && (treasurehandafter - treasurehandbefore != treasuredeckbefore - treasuredeckafter))
+			treasureInDeckAndNOTWorking++;
+		else if (treasuredeckbefore == 1 && (treasurehandafter - treasurehandbefore == treasuredeckbefore - treasuredeckafter))
+			numTreasureOneWorking++;
+		else if (treasuredeckbefore == 1 && (treasurehandafter - treasurehandbefore != treasuredeckbefore - treasuredeckafter))
+			numTreasureOneNOTWorking++;
+		else if (treasuredeckbefore == 0)
+			treasureNotInDeckBefore++;
 	}
+	
+	printf("> 1 treasure in deck and correct number of treasures deck -> hand: %d\n", treasureInDeckAndWorking);
+	printf("> 1 treasure in deck and incorrect number of treasures deck -> hand: %d\n", treasureInDeckAndNOTWorking);
+	printf("Just 1 treasure in deck and correct number of treasures deck -> hand: %d\n", numTreasureOneWorking);
+	printf("Just 1 treasure in deck and incorrect number of treasures deck -> hand: %d\n", numTreasureOneNOTWorking);
+	printf("No treasure cards in deck before playing adventure card: %d\n", treasureNotInDeckBefore);
 		
 	return 0;
 }
