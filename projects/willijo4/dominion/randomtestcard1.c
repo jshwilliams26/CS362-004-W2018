@@ -26,11 +26,11 @@ int main() {
 	printf("\n*** Running smithy_func for 2 players ***\n");
 
 	// Test with game state where none of the card are in the deck
-	numplayers = 2;
 	int numHand5before = 0, numHandNot5before = 0, numHand7after = 0, numHandNot7after = 0;
 
 	int t;
 	for (t = 0; t < 10000; t++) {
+		numplayers = rand() % 11 + -1;
 		handPos = rand() % 100 + -2;
 		memset(&teststate, '\0', sizeof(struct gameState));
 		initializeGame(numplayers, cards, 2000, &teststate);
