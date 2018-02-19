@@ -19,12 +19,14 @@ int main() {
 
 	int cards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};		
 			
-	int numplayers = 2;
+	int numplayers = 4;
+	int cursesBefore[4], cursesAfter[4];
+	int deckBefore[4], deckAfter[4];
+	int giverCorrect = 0, giverIncorrect = 0, receiversCorrect = 0, receiversIncorrect = 0;
 
 	int i, r, j;
-	for (r = 0; r < 10000; r++) {
+	for (r = 0; r < 100000; r++) {
 		memset(&teststate, '\0', sizeof(struct gameState));
-		printf("\n*** Initializing game with 2 players ***\n");
 		initializeGame(numplayers, cards, 2000, &teststate);
 
 		for (i = 0; i < teststate.numPlayers; i++) {
@@ -35,26 +37,45 @@ int main() {
 		}
 		
 		for (i = 0; i < teststate.numPlayers; i++) {
-			printf("Current player: %d\n", whoseTurn(&teststate));
-			printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
-			printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
-			printf("Card count for player %d for curse card is greater than 0: %s\n", i, fullDeckCount(i, curse, &teststate) > 0 ? "True" : "False");
-			printf("Card count for player %d for gold card is greater than 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
-			endTurn(&teststate);
+			deckBefore[i] = teststate.deckCount[i];
+			cursesBefore[i] = fullDeckCount(i, curse, &teststate);
+			//endTurn(&teststate);
 		}
 	
 		cardEffect(sea_hag, choice1, choice2, choice3, &teststate, handPos, &bonus);
-		printf("\n*** Testing sea_hag_func with 2 players ***\n");
 		
 		for (i = 0; i < teststate.numPlayers; i++) {
-			printf("Current player: %d\n", whoseTurn(&teststate));
-			printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
-			printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
-			printf("Card count for player %d for curse card is greater than 0: %s\n", i, fullDeckCount(i, curse, &teststate) > 0 ? "True" : "False");
-			printf("Card count for player %d for gold card is greater than 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
-			endTurn(&teststate);
+			deckAfter[i] = teststate.deckCount[i];
+			cursesAfter[i] = fullDeckCount(i, curse, &teststate);
+			//endTurn(&teststate);
 		}
+		
+		int numReceivers = 0;
+		for (i = 0; i < teststate.numPlayers; i++) {
+			if (i == whoseTurn(&teststate)) {
+				if (cursesBefore[i] == cursesAfter[i] && deckBefore[i] == deckAfter[i])
+					giverCorrect++;
+				else
+					giverIncorrect++;
+			} else {
+				if (cursesBefore[i]+1 == cursesAfter[i] && deckBefore[i] == deckAfter[i])
+					numReceivers++;
+			}
+		}
+		
+		if (numReceivers == 3)
+			receiversCorrect++;
+		else
+			receiversIncorrect++;
 	}
-	
+
+	printf("Sea hag player doesn't gain curse cards and deck count stays same: %d times\n", giverCorrect);
+	printf("Sea hag player gains curse cards or deck count changes: %d times\n", giverIncorrect);
+	printf("All runs accounted for: %s\n\n", (giverCorrect + giverIncorrect) == 100000 ? "True" : "False");
+
+	printf("Other players gain curse cards and deck count stays same: %d times\n", receiversCorrect);
+	printf("Other players gain curse cards or deck count changes: %d times\n", receiversIncorrect);
+	printf("All runs accounted for: %s\n\n", (receiversCorrect + receiversIncorrect) == 100000 ? "True" : "False");
+		
 	return 0;
 }

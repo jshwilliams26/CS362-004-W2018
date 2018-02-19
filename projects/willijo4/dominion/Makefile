@@ -41,32 +41,32 @@ clean:
 randomtestadventurer: dominion.o randomtestadventurer.c
 	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o $(CFLAGS)
 	randomtestadventurer >> randomtestadventurer.out
-	gcov -abcfu dominion.c | grep "adventurer" -A 4 >> randomtestadventurer.out
+	gcov -abcfu dominion.c | grep "adventurer_func" -A 4 >> randomtestadventurer.out
 	gcov -abcfu dominion.c | grep "dominion" -A 7 >> randomtestadventurer.out
 
 randomtestcard1: dominion.o randomtestcard1.c
 	gcc -o randomtestcard1 randomtestcard1.c -g dominion.o rngs.o $(CFLAGS)
 	randomtestcard1 >> randomtestcard1.out
-	gcov -abcfu dominion.c | grep "adventurer" -A 4 >> randomtestcard1.out
+	gcov -abcfu dominion.c | grep "smithy_func" -A 4 >> randomtestcard1.out
 	gcov -abcfu dominion.c | grep "dominion" -A 7 >> randomtestcard1.out
 
 randomtestcard2: dominion.o randomtestcard2.c
 	gcc -o randomtestcard2 randomtestcard2.c -g dominion.o rngs.o $(CFLAGS)
 	randomtestcard2 >> randomtestcard2.out
-	gcov -abcfu dominion.c | grep "adventurer" -A 4 >> randomtestcard2.out
+	gcov -abcfu dominion.c | grep "sea_hag_func" -A 4 >> randomtestcard2.out
 	gcov -abcfu dominion.c | grep "dominion" -A 7 >> randomtestcard2.out
 
 allrandomtests: dominion.o randomtestadventurer.c randomtestcard1.c randomtestcard2.c
 	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o $(CFLAGS)
 	randomtestadventurer >> randomtestadventurer.out
-	gcov -abcfu dominion.c | grep "adventurer" -A 4 >> randomtestadventurer.out
+	gcov -abcfu dominion.c | grep "adventurer_func" -A 4 >> randomtestadventurer.out
 	gcov -abcfu dominion.c | grep "dominion" -A 7 >> randomtestadventurer.out
 	gcc -o randomtestcard1 randomtestcard1.c -g dominion.o rngs.o $(CFLAGS)
 	randomtestcard1 >> randomtestcard1.out
-	gcov -abcfu dominion.c | grep "adventurer" -A 4 >> randomtestcard1.out
+	gcov -abcfu dominion.c | grep "smithy_func" -A 4 >> randomtestcard1.out
 	gcov -abcfu dominion.c | grep "dominion" -A 7 >> randomtestcard1.out
 	gcc -o randomtestcard2 randomtestcard2.c -g dominion.o rngs.o $(CFLAGS)
 	randomtestcard2 >> randomtestcard2.out
-	gcov -abcfu dominion.c | grep "adventurer" -A 4 >> randomtestcard2.out
+	gcov -abcfu dominion.c | grep "sea_hag_func" -A 4 >> randomtestcard2.out
 	gcov -abcfu dominion.c | grep "dominion" -A 7 >> randomtestcard2.out
 	

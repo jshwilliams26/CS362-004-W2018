@@ -24,9 +24,6 @@ int main() {
 
 	int j;
 	int numplayers = 2;
-	int temphand[MAX_HAND];
-	int cardDrawn;
-	int drawntreasure=0;
 
 	int treasureInDeckAndWorking = 0, treasureInDeckAndNOTWorking = 0, treasureNotInDeckBefore = 0, numTreasureOneWorking = 0, numTreasureOneNOTWorking = 0;
 
@@ -86,6 +83,7 @@ int main() {
 	printf("Just 1 treasure in deck and correct number of treasures deck -> hand: %d\n", numTreasureOneWorking);
 	printf("Just 1 treasure in deck and incorrect number of treasures deck -> hand: %d\n", numTreasureOneNOTWorking);
 	printf("No treasure cards in deck before playing adventure card: %d\n", treasureNotInDeckBefore);
+	printf("All runs accounted for: %s\n\n", (treasureInDeckAndWorking + treasureInDeckAndNOTWorking + numTreasureOneWorking + numTreasureOneNOTWorking + treasureNotInDeckBefore) == 100000 ? "True" : "False");
 		
 	return 0;
 }
