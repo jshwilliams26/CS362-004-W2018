@@ -20,32 +20,40 @@ int main() {
 	int cards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};		
 			
 	int numplayers = 2;
-	memset(&teststate, '\0', sizeof(struct gameState));
-	printf("\n*** Initializing game with 2 players ***\n");
-	initializeGame(numplayers, cards, 2000, &teststate);
 
-	int i;
-	for (i = 0; i < teststate.numPlayers; i++) {
-		printf("Current player: %d\n", whoseTurn(&teststate));
-		printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
-		printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
-		printf("Card count for player %d for curse card is greater than 0: %s\n", i, fullDeckCount(i, curse, &teststate) > 0 ? "True" : "False");
-		printf("Card count for player %d for gold card is greater than 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
-	}
+	int i, r, j;
+	for (r = 0; r < 10000; r++) {
+		memset(&teststate, '\0', sizeof(struct gameState));
+		printf("\n*** Initializing game with 2 players ***\n");
+		initializeGame(numplayers, cards, 2000, &teststate);
+
+		for (i = 0; i < teststate.numPlayers; i++) {
+			for (j = 0; j < teststate.handCount[i]; j++)
+				teststate.hand[i][j] = (rand() % (26 + 1 - 0)) + 0;
+			for (j = 0; j < teststate.deckCount[i]; j++)
+				teststate.deck[i][j] = (rand() % (26 + 1 - 0)) + 0;
+		}
+		
+		for (i = 0; i < teststate.numPlayers; i++) {
+			printf("Current player: %d\n", whoseTurn(&teststate));
+			printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
+			printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
+			printf("Card count for player %d for curse card is greater than 0: %s\n", i, fullDeckCount(i, curse, &teststate) > 0 ? "True" : "False");
+			printf("Card count for player %d for gold card is greater than 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
+			endTurn(&teststate);
+		}
 	
-	cardEffect(sea_hag, choice1, choice2, choice3, &teststate, handPos, &bonus);
-	printf("\n*** Testing sea_hag_func with 2 players ***\n");
-	
-	/*
-	Current player shouldn't have a curse on top of their deck, the
-	other player should
-	*/
-	for (i = 0; i < teststate.numPlayers; i++) {
-		printf("Current player: %d\n", whoseTurn(&teststate));
-		printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
-		printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
-		printf("Card count for player %d for curse card is greater than 0: %s\n", i, fullDeckCount(i, curse, &teststate) > 0 ? "True" : "False");
-		printf("Card count for player %d for gold card is greater than 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
+		cardEffect(sea_hag, choice1, choice2, choice3, &teststate, handPos, &bonus);
+		printf("\n*** Testing sea_hag_func with 2 players ***\n");
+		
+		for (i = 0; i < teststate.numPlayers; i++) {
+			printf("Current player: %d\n", whoseTurn(&teststate));
+			printf("Hand count for player %d: %d\n", i, teststate.handCount[i]);
+			printf("Deck count for player %d: %d\n", i, teststate.deckCount[i]);
+			printf("Card count for player %d for curse card is greater than 0: %s\n", i, fullDeckCount(i, curse, &teststate) > 0 ? "True" : "False");
+			printf("Card count for player %d for gold card is greater than 0: %s\n", i, fullDeckCount(i, gold, &teststate) > 0 ? "True" : "False");
+			endTurn(&teststate);
+		}
 	}
 	
 	return 0;

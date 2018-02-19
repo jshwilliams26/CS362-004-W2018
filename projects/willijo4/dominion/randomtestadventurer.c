@@ -13,16 +13,6 @@
 #include <assert.h>
 #include <time.h>
 
-/*
-Set up
-
-test with 1 - 4 players
-Set random cards in hand and deck to random numbers (0-26)
-Test different hand pos
-
-*/
-
-
 int main() {
 	srand(time(NULL));
 
@@ -34,6 +24,9 @@ int main() {
 
 	int j;
 	int numplayers = 2;
+	int temphand[MAX_HAND];
+	int cardDrawn;
+	int drawntreasure=0;
 
 	int treasureInDeckAndWorking = 0, treasureInDeckAndNOTWorking = 0, treasureNotInDeckBefore = 0, numTreasureOneWorking = 0, numTreasureOneNOTWorking = 0;
 
