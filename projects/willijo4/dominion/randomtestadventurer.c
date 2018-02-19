@@ -34,9 +34,9 @@ int main() {
 
 		// Setting all cards for first player to random cards
 		for (j = 0; j < teststate.handCount[0]; j++)
-			teststate.hand[0][j] = (rand() % (26 + 1 - 0)) + 0;
+			teststate.hand[0][j] = rand() % (27);
 		for (j = 0; j < teststate.deckCount[0]; j++)
-			teststate.deck[0][j] = (rand() % (26 + 1 - 0)) + 0;
+			teststate.deck[0][j] = rand() % (27);
 
 		int treasurehandbefore = 0;
 		for (j = 0; j < teststate.handCount[0]; j++)
@@ -52,9 +52,9 @@ int main() {
 		cardEffect(adventurer, choice1, choice2, choice3, &teststate, handPos, &bonus);
 
 		for (j = 0; j < teststate.handCount[0]; j++)
-			teststate.hand[0][j] = (rand() % (26 + 1 - 0)) + 0;
+			teststate.hand[0][j] = rand() % (27);
 		for (j = 0; j < teststate.deckCount[0]; j++)
-			teststate.deck[0][j] = (rand() % (26 + 1 - 0)) + 0;
+			teststate.deck[0][j] = rand() % (27);
 
 		int treasurehandafter = 0;
 		for (j = 0; j < teststate.handCount[0]; j++)

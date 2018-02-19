@@ -1,0 +1,21 @@
+
+*** Random Test Coverage for Adventurer ***
+> 1 treasure in deck and correct number of treasures deck -> hand: 3826
+> 1 treasure in deck and incorrect number of treasures deck -> hand: 6151
+Just 1 treasure in deck and correct number of treasures deck -> hand: 9564
+Just 1 treasure in deck and incorrect number of treasures deck -> hand: 25035
+No treasure cards in deck before playing adventure card: 55424
+All runs accounted for: True
+
+Function 'adventurer_func'
+Lines executed:100.00% of 16
+No branches
+No calls
+
+File 'dominion.c'
+Lines executed:22.32% of 560
+Branches executed:24.70% of 417
+Taken at least once:16.55% of 417
+Calls executed:12.63% of 95
+Creating 'dominion.c.gcov'
+

@@ -1,0 +1,22 @@
+
+*** Random Test Coverage for Smithy ***
+Since the smithy card adds 3 cards to the player's hand and then discards a card, the number of cards in a player's hand after playing the smithy card should be two more than before playing smithy.
+
+Invalid number of players (< 2 || > 4) and hand count not increased: 40033 times
+Invalid number of players (< 2 || > 4) and hand count increased: 0 times
+Valid number of players and hand count increased correctly: 0 times
+Valid number of players and hand count increased incorrectly: 59967 times
+All runs accounted for: True
+
+Function 'smithy_func'
+Lines executed:100.00% of 5
+No branches
+No calls
+
+File 'dominion.c'
+Lines executed:30.54% of 560
+Branches executed:28.54% of 417
+Taken at least once:21.34% of 417
+Calls executed:20.00% of 95
+Creating 'dominion.c.gcov'
+

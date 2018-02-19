@@ -31,15 +31,14 @@ int main() {
 
 		for (i = 0; i < teststate.numPlayers; i++) {
 			for (j = 0; j < teststate.handCount[i]; j++)
-				teststate.hand[i][j] = (rand() % (26 + 1 - 0)) + 0;
+				teststate.hand[i][j] = (rand() % 27);
 			for (j = 0; j < teststate.deckCount[i]; j++)
-				teststate.deck[i][j] = (rand() % (26 + 1 - 0)) + 0;
+				teststate.deck[i][j] = (rand() % 27);
 		}
 		
 		for (i = 0; i < teststate.numPlayers; i++) {
 			deckBefore[i] = teststate.deckCount[i];
 			cursesBefore[i] = fullDeckCount(i, curse, &teststate);
-			//endTurn(&teststate);
 		}
 	
 		cardEffect(sea_hag, choice1, choice2, choice3, &teststate, handPos, &bonus);
@@ -47,7 +46,6 @@ int main() {
 		for (i = 0; i < teststate.numPlayers; i++) {
 			deckAfter[i] = teststate.deckCount[i];
 			cursesAfter[i] = fullDeckCount(i, curse, &teststate);
-			//endTurn(&teststate);
 		}
 		
 		int numReceivers = 0;
