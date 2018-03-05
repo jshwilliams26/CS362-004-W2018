@@ -90,7 +90,7 @@ cardtest3: dominion.o cardtest3.c
 cardtest4: dominion.o cardtest4.c
 	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o $(CFLAGS)
 	echo -e "\n*** Card Test 4 Run for Treasure Map ***" >> unittestresults.out
-	cardtest3 >> unittestresults.out
+	cardtest4 >> unittestresults.out
 	echo -e "\n*** Card Test 4 Coverage ***" >> unittestresults.out
 	gcov -abcfu dominion.c | grep "treasure_map_func" -A 4 >> unittestresults.out
 

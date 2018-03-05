@@ -1,0 +1,20 @@
+Since the smithy card adds 3 cards to the player's hand and then discards a card, the number of cards in a player's hand after playing the smithy card should be two more than before playing smithy.
+
+Invalid number of players (< 2 || > 4) and hand count not increased: 40182 times
+Invalid number of players (< 2 || > 4) and hand count increased: 0 times
+Valid number of players and hand count increased correctly: 0 times
+Valid number of players and hand count increased incorrectly: 59818 times
+All runs accounted for: True
+
+Function 'playSmithy'
+Lines executed:100.00% of 5
+No branches
+No calls
+
+File 'dominion.c'
+Lines executed:30.25% of 562
+Branches executed:28.06% of 417
+Taken at least once:20.86% of 417
+Calls executed:20.43% of 93
+Creating 'dominion.c.gcov'
+

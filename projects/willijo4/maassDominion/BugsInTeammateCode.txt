@@ -1,0 +1,63 @@
+	I found a bug for the smithy card with my cardtest2 and randomtestcard1 programs.  
+For the cardtest2 program, it initializes the game with 2, 3, and 4 players, and then 
+it returns whether the number of cards in each player's hand is 5 before smithy and 7 
+after (since smithy draws 3 cards to the hand and then discards 1 from the hand).  
+It returns True each time for 5 cards in the hand before playing smithy and False for 
+7 cards in the hand after playing smithy.  The randomtestcard1 tests the smithy card 
+by playing the smithy card 100,000 times each with a random number of players from 1 
+to 5.  For a correct number of players (2-4 players), the number of cards in hand after 
+playing smithy should be two more than before playing smithy.  For every random test 
+with a valid number of players, the number of cards in hand changed to an incorrect 
+number every single time after the smithy card was played.  If I look at the playSmithy 
+function in the maass dominion.c code, the for loop looks like "for (i = 0; i < 4; i++)", 
+so it draws a card into the player's hand 4 times instead of 3, which is why the number 
+of cards in hand for a player after playing smithy is not correct.
+	For the adventurer card, when I ran cardtest1, it runs adventurer for 2 players 
+for when there are 0, 1, and 2 treasure cards in each player's hand.  There is a 
+bug that was found - when there are no treasure cards in the players' hands, the 
+first player has a negative number of cards in hand (-592) after playing adventurer:
+
+*** Card Test 1 Run for playAdventurer ***
+
+*** Initializing game with 2 players ***
+--- Showing the initial state of each player's hand and deck
+Current player: 0
+Hand count for player 0: 5
+Deck count for player 0: 5
+Treasure cards in hand for player 0: 4
+Card count for player 0 for copper: 7
+Card count for player 0 for silver: 0
+Card count for player 0 for gold: 0
+Card count for player 0 for estate: 3
+Current player: 1
+Hand count for player 1: 0
+Deck count for player 1: 10
+Treasure cards in hand for player 1: 0
+Card count for player 1 for copper: 7
+Card count for player 1 for silver: 0
+Card count for player 1 for gold: 0
+Card count for player 1 for estate: 3
+--- Setting all cards in each player's hand and deck to estate
+--- Results for 0 treasure cards in each player's deck
+Current player: 0
+Hand count for player 0: -592
+Deck count for player 0: 0
+Treasure cards in hand for player 0 == 0: True
+Card count for player 0 for copper: 0
+Card count for player 0 for silver: 0
+Card count for player 0 for gold: 0
+Card count for player 0 for estate: 9
+Current player: 1
+Hand count for player 1: 0
+Deck count for player 1: 10
+Treasure cards in hand for player 1 == 0: True
+Card count for player 1 for copper: 0
+Card count for player 1 for silver: 0
+Card count for player 1 for gold: 0
+Card count for player 1 for estate: 10
+
+This could be because of an error that Sarah Maas introduced into the playAdventurer 
+function.  The maass adventurer function (playAdventurer), has 2 instances of 
+"state->handCount[currentPlayer]--;" in the code when the original code only has this 
+line once.  This could be why the number of cards in the first player's hand after 
+playing the adventurer card is less than 0.
