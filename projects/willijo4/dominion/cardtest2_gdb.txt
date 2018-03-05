@@ -1,0 +1,182 @@
++break 43
+Breakpoint 1 at 0x4013f2: file cardtest2.c, line 43.
++run
+Starting program: /nfs/stak/users/willijo4/CS362-004-W2018/projects/willijo4/dominion/cardtest2 
+
+Breakpoint 1, main () at cardtest2.c:43
+43		cardEffect(smithy, choice1, choice2, choice3, &teststate, handPos, &bonus);
+Missing separate debuginfos, use: debuginfo-install glibc-2.17-196.el7_4.2.x86_64
++step
+cardEffect (card=13, choice1=0, choice2=0, choice3=0, state=0x7fffffff82b0, handPos=0, bonus=0x7fffffff82ac) at dominion.c:796
+796		int currentPlayer = whoseTurn(state);
++step
+whoseTurn (state=0x7fffffff82b0) at dominion.c:347
+347		return state->whoseTurn;
++step
+348	}
++step
+cardEffect (card=13, choice1=0, choice2=0, choice3=0, state=0x7fffffff82b0, handPos=0, bonus=0x7fffffff82ac) at dominion.c:797
+797		int nextPlayer = currentPlayer + 1;
++step
+799		int tributeRevealedCards[2] = {-1, -1};
++step
+801		int drawntreasure=0;
++step
+803		int z = 0;// this is the counter for the temp hand
++step
+804		if (nextPlayer > (state->numPlayers - 1)){
++step
+810		switch( card ) 
++step
+957				return smithy_func(currentPlayer, state, handPos);
++step
+smithy_func (currentPlayer=0, state=0x7fffffff82b0, handPos=0) at dominion.c:683
+683		for (i = 0; i <= 3; i++) {
++step
+684			drawCard(currentPlayer, state);
++print i
+$1 = 0
++step
+drawCard (player=0, state=0x7fffffff82b0) at dominion.c:528
+528		if (state->deckCount[player] <= 0){//Deck is empty
++step
+568			int count = state->handCount[player];//Get current hand count for player
++print state->handCount[player]
+$2 = 5
++step
+574			deckCounter = state->deckCount[player];//Create holder for the deck count
++step
+575			state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
++step
+576			state->deckCount[player]--;
++step
+577			state->handCount[player]++;//Increment hand count
++step
+580		return 0;
++print state->handCount[player]
+$3 = 6
++step
+581	}
++step
+smithy_func (currentPlayer=0, state=0x7fffffff82b0, handPos=0) at dominion.c:683
+683		for (i = 0; i <= 3; i++) {
++step
+684			drawCard(currentPlayer, state);
++print i
+$4 = 1
++step
+drawCard (player=0, state=0x7fffffff82b0) at dominion.c:528
+528		if (state->deckCount[player] <= 0){//Deck is empty
++step
+568			int count = state->handCount[player];//Get current hand count for player
++step
+574			deckCounter = state->deckCount[player];//Create holder for the deck count
++print state->handCount[player]
+$5 = 6
++step
+575			state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
++step
+576			state->deckCount[player]--;
++step
+577			state->handCount[player]++;//Increment hand count
++step
+580		return 0;
++print state->handCount[player]
+$6 = 7
++step
+581	}
++step
+smithy_func (currentPlayer=0, state=0x7fffffff82b0, handPos=0) at dominion.c:683
+683		for (i = 0; i <= 3; i++) {
++step
+684			drawCard(currentPlayer, state);
++print i
+$7 = 2
++step
+drawCard (player=0, state=0x7fffffff82b0) at dominion.c:528
+528		if (state->deckCount[player] <= 0){//Deck is empty
++step
+568			int count = state->handCount[player];//Get current hand count for player
++step
+574			deckCounter = state->deckCount[player];//Create holder for the deck count
++step
+575			state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
++step
+576			state->deckCount[player]--;
++step
+577			state->handCount[player]++;//Increment hand count
++step
+580		return 0;
++print state->handCount[player]
+$8 = 8
++step
+581	}
++step
+smithy_func (currentPlayer=0, state=0x7fffffff82b0, handPos=0) at dominion.c:683
+683		for (i = 0; i <= 3; i++) {
++step
+684			drawCard(currentPlayer, state);
++print i
+$9 = 3
++step
+drawCard (player=0, state=0x7fffffff82b0) at dominion.c:528
+528		if (state->deckCount[player] <= 0){//Deck is empty
++step
+568			int count = state->handCount[player];//Get current hand count for player
++step
+574			deckCounter = state->deckCount[player];//Create holder for the deck count
++step
+575			state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
++step
+576			state->deckCount[player]--;
++step
+577			state->handCount[player]++;//Increment hand count
++step
+580		return 0;
++print state->handCount[player]
+$10 = 9
++step
+581	}
++step
+smithy_func (currentPlayer=0, state=0x7fffffff82b0, handPos=0) at dominion.c:683
+683		for (i = 0; i <= 3; i++) {
++step
+688		discardCard(handPos, currentPlayer, state, 2);
++print i
+$11 = 4
++step
+discardCard (handPos=0, currentPlayer=0, state=0x7fffffff82b0, trashFlag=2) at dominion.c:1265
+1265		if (trashFlag < 1)
++step
+1273		state->hand[currentPlayer][handPos] = -1;
++step
+1276		if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
++step
+1281		else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
++step
+1289			state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
++step
+1291			state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
++step
+1293			state->handCount[currentPlayer]--;
++step
+1296		return 0;
++print state->handCount[currentPlayer]
+$12 = 8
++step
+1297	}
++step
+smithy_func (currentPlayer=0, state=0x7fffffff82b0, handPos=0) at dominion.c:690
+690		return 0;
++step
+691	}
++step
+cardEffect (card=13, choice1=0, choice2=0, choice3=0, state=0x7fffffff82b0, handPos=0, bonus=0x7fffffff82ac) at dominion.c:1259
+1259	}
++step
+main () at cardtest2.c:44
+44		printf("Player %d's number of cards in hand == 7 after smithy_func: %s\n", whoseTurn(&teststate), numHandCards(&teststate) == 7 ? "True" : "False");
++continue
+Continuing.
+[Inferior 1 (process 12509) exited normally]
++q

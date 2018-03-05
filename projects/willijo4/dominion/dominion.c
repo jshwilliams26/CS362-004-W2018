@@ -680,7 +680,7 @@ int adventurer_func(int drawntreasure, struct gameState *state, int currentPlaye
 int smithy_func(int currentPlayer, struct gameState *state, int handPos) {
 	// +3 Cards
 	int i;
-	for (i = 0; i <= 3; i++) {
+	for (i = 0; i < 3; i++) {
 		drawCard(currentPlayer, state);
 	}
 
