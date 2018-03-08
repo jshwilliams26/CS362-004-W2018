@@ -1,8 +1,0 @@
-Sea hag player doesn't gain curse cards and deck count stays same: 100000 times
-Sea hag player gains curse cards or deck count changes: 0 times
-All runs accounted for: True
-
-Other players gain curse cards and deck count stays same: 0 times
-Other players gain curse cards or deck count changes: 100000 times
-All runs accounted for: True
-
